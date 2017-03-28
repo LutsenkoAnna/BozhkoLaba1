@@ -54,18 +54,17 @@ public class SquaredWord {
     }
 
     //TODO: Здесь опущение, что достаточно изменить одну букву
-    public void rollBack(int verticalIndex, int horizontalIndex){
-        //System.out.println(dictionary.get(dictionaryIndex) + " i = " + horizontalIndex + " j = " + verticalIndex);
-        for (int i = 0; i < dictionarySize; ++i) {
-            String letter = dictionary.get(i);
-            if (letter.equals(squareMatrix.get(dictionarySize * horizontalIndex + verticalIndex).letter) || checkVertical(letter, verticalIndex) && checkHorizontal(letter, horizontalIndex)) {
-                squareMatrix.get(dictionarySize * horizontalIndex + verticalIndex).setLetter(letter);
-                return;
+    public void rollBack(int verticalIndex, int horizontalIndex, String dictionaryLetter){
+        System.out.println(dictionaryLetter + " i = " + horizontalIndex + " j = " + verticalIndex);
+        for (String letter : dictionary) {
+            if (letter.compareTo(dictionaryLetter) > 0) {
+                if (letter.equals(squareMatrix.get(dictionarySize * horizontalIndex + verticalIndex).letter) || checkVertical(letter, verticalIndex) && checkHorizontal(letter, horizontalIndex)) {
+                    squareMatrix.get(dictionarySize * horizontalIndex + verticalIndex).setLetter(letter);
+                    return;
+                }
             }
         }
         ++countOfRollBack;
-        if (countOfRollBack == dictionarySize)
-            --countOfRollBack;
     }
 
 
@@ -81,7 +80,7 @@ public class SquaredWord {
                         }
                         if (k == dictionarySize - 1) {
                             System.out.print(i + " " + j + " " + k);
-                            rollBack(j - countOfRollBack - 1, i);
+                            rollBack(j - countOfRollBack - 1, i, squareMatrix.get(dictionarySize * i + (j - countOfRollBack - 1)).letter);
                             j -= countOfRollBack + 1;
                         }
                     }
