@@ -15,7 +15,7 @@ public class SquaredWord {
     private int col = 0;
 
     SquaredWord() {
-
+/*
         dictionarySize = 5;
 
         dictionary.add("С");
@@ -34,8 +34,8 @@ public class SquaredWord {
         squareMatrix.set(dictionarySize * 2 + 2, new Cell("Л", true));
         squareMatrix.set(dictionarySize * 2 + 3, new Cell("Е", true));
         squareMatrix.set(dictionarySize * 2 + 4, new Cell("С", true));
-
-        /*dictionarySize = 6;
+*/
+        dictionarySize = 6;
 
         dictionary.add("К");
         dictionary.add("Л");
@@ -57,7 +57,7 @@ public class SquaredWord {
         squareMatrix.set(dictionarySize * 3 + 4, new Cell("Т", true));
         squareMatrix.set(dictionarySize * 4 + 0, new Cell("Л", true));
         squareMatrix.set(dictionarySize * 4 + 1, new Cell("И", true));
-        squareMatrix.set(dictionarySize * 4 + 2, new Cell("К", true));*/
+        squareMatrix.set(dictionarySize * 4 + 2, new Cell("К", true));
     }
 
     private boolean CheckCol(String letter) {
@@ -105,7 +105,12 @@ public class SquaredWord {
 
     public void RollBack() {
         if (squareMatrix.get(dictionarySize * row + col).isSpecified) {
-            --col;
+            if (col == 0){
+                --row;
+                col = dictionarySize - 1;
+            }
+            else
+                --col;
             RollBack();
         }
         for (String letter : dictionary) {
@@ -117,7 +122,12 @@ public class SquaredWord {
             }
         }
         squareMatrix.set(dictionarySize * row + col, new Cell("", false));
-        --col;
+        if (col == 0){
+            --row;
+            col = dictionarySize - 1;
+        }
+        else
+            --col;
         RollBack();
     }
 
@@ -129,7 +139,12 @@ public class SquaredWord {
             }
         }
         squareMatrix.set(dictionarySize * row + col, new Cell("", false));
-        --col;
+        if (col == 0) {
+            --row;
+            col = dictionarySize - 1;
+        }
+        else
+            --col;
         RollBack();
         return;
     }
