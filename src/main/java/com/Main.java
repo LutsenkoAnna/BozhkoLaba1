@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) {
         SquaredWord sw = new SquaredWord();
         Collections.sort(sw.dictionary);
-        sw.printDictionary();
-        sw.greedyAlgorithm();
-        sw.printMatrix();
+        sw.PrintDictionary();
+        sw.GreedyAlgoritm();
+        sw.PrintMatrix();
     }
 }

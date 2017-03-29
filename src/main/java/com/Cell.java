@@ -5,6 +5,8 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 /**
  * Created by Anna on 28.03.2017.
  */
+
+//TODO: add coordinates of cell
 public class Cell {
     protected String letter = new String();
     protected boolean isSpecified = false;
